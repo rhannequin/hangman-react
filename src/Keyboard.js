@@ -17,6 +17,7 @@ class Keyboard extends Component {
           <Letter
             key={letterValue}
             value={letterValue}
+            onClick={this.props.handleLetterClick}
           />
         ))}
       </div>
