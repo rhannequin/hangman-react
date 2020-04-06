@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './App.css'
 
+import HiddenWord from './HiddenWord'
 import Keyboard from './Keyboard'
 
-function App() {
-  return (
-    <div className="App">
-      <div className="ui container">
-        <h1 className="ui header">Hangman React</h1>
-        <Keyboard />
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="ui container">
+          <h1 className="ui header">Hangman React</h1>
+          <HiddenWord />
+          <Keyboard />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default App
