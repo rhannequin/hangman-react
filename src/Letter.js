@@ -4,7 +4,7 @@ import './Letter.css'
 
 const Letter = ({ value, onClick }) => (
   <span className="letter">
-      <button
+    <button
       className="ui button"
       onClick={() => onClick(value)}
     >
