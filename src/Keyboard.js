@@ -9,14 +9,21 @@ const LETTERS = [
   "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
 ]
 
-const Keyboard = ({ selectedLetters, handleLetterClick }) => {
+function pickedStatus(value, selected, matchingValues) {
+  if(selected.includes(value)) {
+    return matchingValues.includes(value)
+  }
+}
+
+const Keyboard = ({ lettersToGuess, selectedLetters, handleLetterClick }) => {
   return (
     <div className="ui segment keyboard">
       {LETTERS.map((letterValue) => (
         <Letter
           key={letterValue}
           value={letterValue}
-          alreadySelected={selectedLetters.includes(letterValue)}
+          picked={selectedLetters.includes(letterValue)}
+          pickedStatus={pickedStatus(letterValue, selectedLetters, lettersToGuess)}
           onClick={handleLetterClick}
         />
       ))}

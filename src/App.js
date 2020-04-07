@@ -53,6 +53,7 @@ class App extends Component {
             selectedLetters={selectedLetters}
           />
           <Keyboard
+            lettersToGuess={lettersToGuess}
             selectedLetters={selectedLetters}
             handleLetterClick={this.handleLetterClick}
           />
