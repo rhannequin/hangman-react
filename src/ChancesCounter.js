@@ -1,5 +1,6 @@
 import React from "react"
 
+const STATUS_PLAYING = "playing"
 const STATUS_SUCCESS = "succeeded"
 const STATUS_FAIL = "failed"
 
@@ -16,7 +17,11 @@ function label(chances) {
 
 const ChancesCounter = ({ chances, gameStatus }) => (
   <div className="ui segment keyboard">
-    <p>{label(chances)}</p>
+    {
+      gameStatus === STATUS_PLAYING &&
+      <p>{label(chances)}</p>
+    }
+
     {
       gameStatus === STATUS_SUCCESS &&
       <p className="ui green header">Well done!</p>

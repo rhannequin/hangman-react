@@ -9,6 +9,7 @@ import Keyboard from "./Keyboard"
 
 const INITIAL_CHANCES = 6
 const STATUS_PLAYING = "playing"
+const STATUS_SUCCEEDED = "succeeded"
 const STATUS_FAILED = "failed"
 
 const wordToGuess = faker.hacker.noun().toUpperCase()
@@ -31,27 +32,39 @@ class App extends Component {
       this.updateSelectedLetters(letter)
 
       if(wrongGuess(letter)) {
-        this.updateStatusAndChances()
+        this.updateChances()
       }
     }
   }
 
   updateSelectedLetters(letter) {
     this.setState(
-      (prevState, _props) => (
-        { selectedLetters: [...prevState.selectedLetters, letter] }
-      )
+      (prevState, _props) => {
+        const newSelectedLetters = [...prevState.selectedLetters, letter]
+        const newState = { selectedLetters: newSelectedLetters }
+
+        if(lettersToGuess.every((letter) => newSelectedLetters.includes(letter))) {
+          newState["status"] = STATUS_SUCCEEDED
+        }
+
+        return newState
+      }
     )
   }
 
-  updateStatusAndChances() {
-    const newChances = this.state.chances - 1
+  updateChances() {
+    this.setState(
+      (prevState, _props) => {
+        const newChances = prevState.chances - 1
+        const newState = { chances: newChances }
 
-    this.setState({ chances: newChances })
+        if(newChances === 0) {
+          newState["status"] = STATUS_FAILED
+        }
 
-    if(newChances === 0) {
-      this.setState({ status: STATUS_FAILED })
-    }
+        return newState
+      }
+    )
   }
 
   render() {

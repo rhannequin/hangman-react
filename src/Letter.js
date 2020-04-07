@@ -7,12 +7,8 @@ const SUCCESS_CLASS = "positive"
 const FAIL_CLASS = "negative"
 
 function pickedClass(enabled, picked, status) {
-  if(!enabled) {
-    return ` ${DISABLED_CLASS}`
-  }
-
   if(!picked) {
-    return ""
+    return enabled ? "" : ` ${DISABLED_CLASS}`
   }
 
   return ` ${DISABLED_CLASS} ${status ? SUCCESS_CLASS : FAIL_CLASS}`
