@@ -6,7 +6,11 @@ const DISABLED_CLASS = "disabled"
 const SUCCESS_CLASS = "positive"
 const FAIL_CLASS = "negative"
 
-function pickedClass(picked, status) {
+function pickedClass(enabled, picked, status) {
+  if(!enabled) {
+    return ` ${DISABLED_CLASS}`
+  }
+
   if(!picked) {
     return ""
   }
@@ -14,11 +18,11 @@ function pickedClass(picked, status) {
   return ` ${DISABLED_CLASS} ${status ? SUCCESS_CLASS : FAIL_CLASS}`
 }
 
-const Letter = ({ value, picked, pickedStatus, onClick }) => (
+const Letter = ({ value, enabled, picked, pickedStatus, onClick }) => (
   <span className="letter">
     <button
-      className={`ui button${pickedClass(picked, pickedStatus)}`}
-      onClick={() => onClick(value)}
+      className={`ui button${pickedClass(enabled, picked, pickedStatus)}`}
+      onClick={() => enabled && onClick(value)}
     >
       {value}
     </button>

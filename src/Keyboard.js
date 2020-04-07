@@ -15,13 +15,14 @@ function pickedStatus(value, selected, matchingValues) {
   }
 }
 
-const Keyboard = ({ lettersToGuess, selectedLetters, handleLetterClick }) => {
+const Keyboard = ({ enabled, lettersToGuess, selectedLetters, handleLetterClick }) => {
   return (
     <div className="ui segment keyboard">
       {LETTERS.map((letterValue) => (
         <Letter
           key={letterValue}
           value={letterValue}
+          enabled={enabled}
           picked={selectedLetters.includes(letterValue)}
           pickedStatus={pickedStatus(letterValue, selectedLetters, lettersToGuess)}
           onClick={handleLetterClick}
