@@ -1,11 +1,9 @@
 import React, { Component } from "react"
-import faker from "faker"
 
 import "./HiddenWord.css"
 
 import HiddenLetter from "./HiddenLetter"
 
-const wordToGuess = faker.hacker.noun().toUpperCase()
 const STATUS_FOUND = "found"
 const STATUS_UNKNOWN = "unknown"
 
@@ -15,9 +13,11 @@ class HiddenWord extends Component {
   }
 
   render() {
+    const { lettersToGuess } = this.props
+
     return (
       <div className="ui segment">
-        {wordToGuess.split("").map((letter, index) => (
+        {lettersToGuess.map((letter, index) => (
           <HiddenLetter
             key={index}
             value={letter}
