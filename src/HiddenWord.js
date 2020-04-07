@@ -4,13 +4,13 @@ import "./HiddenWord.css"
 
 import HiddenLetter from "./HiddenLetter"
 
-const HiddenWord = ({ lettersToGuess, selectedLetters }) => (
+const HiddenWord = ({ reveal, lettersToGuess, selectedLetters }) => (
   <div className="ui segment">
     {lettersToGuess.map((letter, index) => (
       <HiddenLetter
         key={index}
         value={letter}
-        reveal={selectedLetters.includes(letter)}
+        reveal={reveal || selectedLetters.includes(letter)}
       />
     ))}
   </div>

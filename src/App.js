@@ -76,6 +76,7 @@ class App extends Component {
           <h1 className="ui header">Hangman React</h1>
           <ChancesCounter gameStatus={status} chances={chances} />
           <HiddenWord
+            reveal={status !== STATUS_PLAYING}
             lettersToGuess={lettersToGuess}
             selectedLetters={selectedLetters}
           />
