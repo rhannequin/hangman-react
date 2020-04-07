@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import './App.css'
+import React, { Component } from "react"
+import "./App.css"
 
-import HiddenWord from './HiddenWord'
-import Keyboard from './Keyboard'
+import HiddenWord from "./HiddenWord"
+import Keyboard from "./Keyboard"
 
 class App extends Component {
   handleLetterClick(letter) {

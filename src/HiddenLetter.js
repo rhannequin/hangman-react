@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import './HiddenLetter.css'
+import "./HiddenLetter.css"
 
-const DEFAULT_STATUS = 'unknown'
+const DEFAULT_STATUS = "unknown"
 const DEFAULT_VALUE = "_"
 
 class HiddenLetter extends Component {

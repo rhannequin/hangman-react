@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import './HiddenWord.css'
+import "./HiddenWord.css"
 
-import HiddenLetter from './HiddenLetter'
+import HiddenLetter from "./HiddenLetter"
 
 const wordToGuess = "REACT"
 const STATUS_FOUND = "found"
