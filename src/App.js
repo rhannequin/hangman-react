@@ -14,7 +14,7 @@ class App extends Component {
       <div className="App">
         <div className="ui container">
           <h1 className="ui header">Hangman React</h1>
-          <HiddenWord />
+          <HiddenWord foundLetters={[]} />
           <Keyboard handleLetterClick={this.handleLetterClick} />
         </div>
       </div>
