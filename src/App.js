@@ -6,28 +6,28 @@ import Keyboard from "./Keyboard"
 
 class App extends Component {
   state = {
-    foundLetters: [],
+    selectedLetters: [],
   }
 
   // Arrow fx for binding
   handleLetterClick = (letter) => {
-    if(!this.state.foundLetters.includes(letter)) {
+    if(!this.state.selectedLetters.includes(letter)) {
       this.setState(
-        (prevState, _) => (
-          { foundLetters: [...prevState.foundLetters, letter] }
+        (prevState, _props) => (
+          { selectedLetters: [...prevState.selectedLetters, letter] }
         )
       )
     }
   }
 
   render() {
-    const { foundLetters } = this.state
+    const { selectedLetters } = this.state
 
     return (
       <div className="App">
         <div className="ui container">
           <h1 className="ui header">Hangman React</h1>
-          <HiddenWord foundLetters={foundLetters} />
+          <HiddenWord selectedLetters={selectedLetters} />
           <Keyboard handleLetterClick={this.handleLetterClick} />
         </div>
       </div>

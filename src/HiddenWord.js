@@ -10,7 +10,7 @@ const STATUS_UNKNOWN = "unknown"
 
 class HiddenWord extends Component {
   statusForLetter(letter) {
-    return this.props.foundLetters.includes(letter) ? STATUS_FOUND : STATUS_UNKNOWN
+    return this.props.selectedLetters.includes(letter) ? STATUS_FOUND : STATUS_UNKNOWN
   }
 
   render() {
