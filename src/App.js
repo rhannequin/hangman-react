@@ -29,42 +29,28 @@ class App extends Component {
   // Arrow fx for binding
   handleLetterClick = (letter) => {
     if(!this.state.selectedLetters.includes(letter)) {
-      this.updateSelectedLetters(letter)
+      this.setState(
+        (prevState, _props) => {
+          const newSelectedLetters = [...prevState.selectedLetters, letter]
+          const newState = { selectedLetters: newSelectedLetters }
 
-      if(wrongGuess(letter)) {
-        this.updateChances()
-      }
+          if(lettersToGuess.every((letter) => newSelectedLetters.includes(letter))) {
+            newState["status"] = STATUS_SUCCEEDED
+          }
+
+          if(wrongGuess(letter)) {
+            const newChances = prevState.chances - 1
+            newState["chances"] = newChances
+
+            if(newChances === 0) {
+              newState["status"] = STATUS_FAILED
+            }
+          }
+
+          return newState
+        }
+      )
     }
-  }
-
-  updateSelectedLetters(letter) {
-    this.setState(
-      (prevState, _props) => {
-        const newSelectedLetters = [...prevState.selectedLetters, letter]
-        const newState = { selectedLetters: newSelectedLetters }
-
-        if(lettersToGuess.every((letter) => newSelectedLetters.includes(letter))) {
-          newState["status"] = STATUS_SUCCEEDED
-        }
-
-        return newState
-      }
-    )
-  }
-
-  updateChances() {
-    this.setState(
-      (prevState, _props) => {
-        const newChances = prevState.chances - 1
-        const newState = { chances: newChances }
-
-        if(newChances === 0) {
-          newState["status"] = STATUS_FAILED
-        }
-
-        return newState
-      }
-    )
   }
 
   render() {
