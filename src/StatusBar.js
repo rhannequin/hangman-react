@@ -15,7 +15,7 @@ function label(chances) {
   }
 }
 
-const ChancesCounter = ({ chances, gameStatus }) => (
+const StatusBar = ({ chances, gameStatus, lauchNewGame }) => (
   <div className="ui segment keyboard">
     {
       gameStatus === STATUS_PLAYING &&
@@ -31,7 +31,19 @@ const ChancesCounter = ({ chances, gameStatus }) => (
       gameStatus === STATUS_FAIL &&
       <p className="ui red header">Game over</p>
     }
+
+    {
+      (gameStatus === STATUS_SUCCESS || gameStatus === STATUS_FAIL) &&
+      <p>
+        <button
+          onClick={lauchNewGame}
+          className="ui green button"
+        >
+          Start new game
+        </button>
+      </p>
+    }
   </div>
 )
 
-export default ChancesCounter
+export default StatusBar

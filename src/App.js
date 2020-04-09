@@ -3,7 +3,7 @@ import faker from "faker"
 
 import "./App.css"
 
-import ChancesCounter from "./ChancesCounter"
+import StatusBar from "./StatusBar"
 import HiddenWord from "./HiddenWord"
 import Keyboard from "./Keyboard"
 
@@ -12,15 +12,13 @@ const STATUS_PLAYING = "playing"
 const STATUS_SUCCEEDED = "succeeded"
 const STATUS_FAILED = "failed"
 
-const wordToGuess = faker.hacker.noun().toUpperCase()
-const lettersToGuess = wordToGuess.split("")
-
-function wrongGuess(letter) {
-  return !lettersToGuess.includes(letter)
+function randomWord() {
+  return faker.hacker.noun().toUpperCase()
 }
 
 class App extends Component {
   state = {
+    lettersToGuess: randomWord().split(""),
     selectedLetters: [],
     chances: INITIAL_CHANCES,
     status: STATUS_PLAYING,
@@ -34,11 +32,11 @@ class App extends Component {
           const newSelectedLetters = [...prevState.selectedLetters, letter]
           const newState = { selectedLetters: newSelectedLetters }
 
-          if(lettersToGuess.every((letter) => newSelectedLetters.includes(letter))) {
+          if(this.state.lettersToGuess.every((letter) => newSelectedLetters.includes(letter))) {
             newState["status"] = STATUS_SUCCEEDED
           }
 
-          if(wrongGuess(letter)) {
+          if(this.wrongGuess(letter)) {
             const newChances = prevState.chances - 1
             newState["chances"] = newChances
 
@@ -53,14 +51,32 @@ class App extends Component {
     }
   }
 
+  // Arrow fx for binding
+  lauchNewGame = () => {
+    this.setState({
+      lettersToGuess: randomWord().split(""),
+      selectedLetters: [],
+      chances: INITIAL_CHANCES,
+      status: STATUS_PLAYING
+    })
+  }
+
+  wrongGuess(letter) {
+    return !this.state.lettersToGuess.includes(letter)
+  }
+
   render() {
-    const { status, chances, selectedLetters } = this.state
+    const { lettersToGuess, status, chances, selectedLetters } = this.state
 
     return (
       <div className="App">
         <div className="ui container">
           <h1 className="ui header">Hangman React</h1>
-          <ChancesCounter gameStatus={status} chances={chances} />
+          <StatusBar
+            gameStatus={status}
+            chances={chances}
+            lauchNewGame={this.lauchNewGame}
+          />
           <HiddenWord
             reveal={status !== STATUS_PLAYING}
             lettersToGuess={lettersToGuess}
