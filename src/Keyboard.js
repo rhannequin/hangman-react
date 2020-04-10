@@ -5,17 +5,46 @@ import "./Keyboard.css"
 import Letter from "./Letter"
 
 const LETTERS = [
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
 ]
 
 function pickedStatus(value, selected, matchingValues) {
-  if(selected.includes(value)) {
+  if (selected.includes(value)) {
     return matchingValues.includes(value)
   }
 }
 
-const Keyboard = ({ enabled, lettersToGuess, selectedLetters, handleLetterClick }) => {
+const Keyboard = ({
+  enabled,
+  lettersToGuess,
+  selectedLetters,
+  handleLetterClick,
+}) => {
   return (
     <div className="ui segment keyboard">
       {LETTERS.map((letterValue) => (
@@ -24,7 +53,11 @@ const Keyboard = ({ enabled, lettersToGuess, selectedLetters, handleLetterClick 
           value={letterValue}
           enabled={enabled}
           picked={selectedLetters.includes(letterValue)}
-          pickedStatus={pickedStatus(letterValue, selectedLetters, lettersToGuess)}
+          pickedStatus={pickedStatus(
+            letterValue,
+            selectedLetters,
+            lettersToGuess
+          )}
           onClick={handleLetterClick}
         />
       ))}
